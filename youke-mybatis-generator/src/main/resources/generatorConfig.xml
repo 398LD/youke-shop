@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<context id="sqlGenerate" targetRuntime="MyBatis3">
+		<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- 数据库链接URL、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/shop?characterEncoding=utf8"
+			userId="root" password="root">
+		</jdbcConnection>
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer; 为 true时把JDBC DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成Pojo包名和位置 -->
+		<javaModelGenerator targetPackage="com.kexun.pojo"
+			targetProject="../youke-pojo/src/main/java">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="true" />
+			<!-- 清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成Mapper映射XML文件位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="../youke-dao/src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 生成Mapper接口文件位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.kexun.mapper" targetProject="../youke-dao/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 要生成哪些表(更改tableName和domainObjectName就可以) -->
+		<!-- tableName:要生成的表名 domainObjectName:生成后的实例名 enableCountByExample:Count语句中加入where条件查询，默认为true开启 
+			enableUpdateByExample:Update语句中加入where条件查询，默认为true开启 enableDeleteByExample:Delete语句中加入where条件查询，默认为true开启 
+			enableSelectByExample:Select多条语句中加入where条件查询，默认为true开启 selectByExampleQueryId:Select单个对象语句中加入where条件查询，默认为true开启 -->
+		<table schema="shop" tableName="category"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+
+	</context>
+</generatorConfiguration>

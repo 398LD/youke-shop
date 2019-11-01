@@ -1,0 +1,12 @@
+#文件保存路径
+filePath: E://img/
+spring:
+  profiles:
+    active:
+      - mail
+      - data
+      - redis
+server:
+  port: 8080
+  servlet:
+    context-path: /youkeshop

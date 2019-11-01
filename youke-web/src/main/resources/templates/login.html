@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>优客商城-登录</title>
+    <!--图标样式-->
+    <!--    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css'>-->
+    <link rel="stylesheet" media="all" th:href="@{/css/message.css}"/>
+    <link rel="stylesheet" href="css/login/style.css" th:href="@{/css/login/style.css}">
+
+</head>
+
+<body>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="javascript:register()" method="get" id="registerForm">
+            <h1>注册</h1>
+            <!--<div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>-->
+            <input type="text" id="rusername" name="username" required placeholder="用户名"/>
+            <input type="password" id="rpassword" name="password" required placeholder="密码"/>
+            <input type="email" id="remail" name="email" placeholder="邮箱"/>
+            <input type="text" id="rcode" name="code" placeholder="验证码">
+            <a href="javascript:getcode()" id="getemcode">获取邮箱验证码</a>
+            <button type="submit">注册</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="javascript:login()" id="loginForm">
+            <h1 style="margin-bottom: 20px;">登录</h1>
+            <!--<div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>-->
+            <!--<span>第三方账号登录</span>-->
+            <input type="text" name="username" id="username" placeholder="用户名"/>
+            <input type="password" name="password" id="password" placeholder="密码"/>
+            <input type="text" style="width: 200px ;position: relative; left: -41px;" id="code" name="code"/><img
+                onclick="code(this)"
+                style="width: 80px; height: 40px; position: relative;left: 100px;top: -50px;" th:src="@{/getAuthCode}">
+            <a href="#">忘记密码？</a>
+            <button type="submit">登录</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>欢迎回来！</h1>
+                <p>请您先登录的个人信息，进行操作。</p>
+                <button class="ghost" id="signIn">登录</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>你好朋友！</h1>
+                <p>输入您的个人信息注册成为会员。</p>
+                <button class="ghost" id="signUp">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>
+        版权归科讯计算机技术有限公司所有
+    </p>
+</footer>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
+<script type="text/javascript" th:src="@{/js/message.js}"></script>
+<script type="text/javascript" th:src="@{js/login/RSA.js}"></script>
+<script type="text/javascript" th:src="@{js/login/login.js}"></script>
+<script>
+
+    function code(obj) {
+        var time = new Date().getTime();
+        $(obj).attr("src", "http://127.0.0.1:8080/youkeshop/getAuthCode?time=" + time);
+    }
+
+    function getcode() {
+        var t = 60;
+        var eml = $("#remail").val();
+        $.get("http://127.0.0.1:8080/youkeshop/getEmailCode", {"email": eml}, function (data) {
+            $.message({
+                message: data.message,
+                type: 'info'
+            });
+            /*开始计时*/
+            $("#getemcode").removeAttr("href");
+            var tt = setInterval(function () {
+                t--;
+                $("#getemcode").text(t + "s后重试");
+
+                if (t <= 0) {
+                    clearInterval(tt);
+                    $("#getemcode").text("获取邮箱验证码");
+                    $("#getemcode").attr("href", "javascript:getcode()");
+                }
+            }, 1000);
+
+        })
+
+    }
+
+
+</script>
+
+</body>
+
+</html>

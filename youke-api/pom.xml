@@ -11,5 +11,32 @@
 
     <artifactId>youke-api</artifactId>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kexun</groupId>
+            <artifactId>youke-service</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kexun</groupId>
+            <artifactId>youke-common</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kexun</groupId>
+            <artifactId>youke-pojo</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+    </dependencies>
 
 </project>

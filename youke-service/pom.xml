@@ -11,5 +11,15 @@
 
     <artifactId>youke-service</artifactId>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.kexun</groupId>
+            <artifactId>youke-dao</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+    </dependencies>
+
 
 </project>

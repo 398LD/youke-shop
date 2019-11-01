@@ -11,5 +11,26 @@
 
     <artifactId>youke-common</artifactId>
 
+    <description>
+        工具
+    </description>
+
+    <dependencies>
+        <!--邮件发送-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
+        <!--apache-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+
+
+
+    </dependencies>
 
 </project>
